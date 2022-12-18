@@ -1,9 +1,11 @@
 export type Themes = {
+  id: number;
   title: string;
   content: Book[];
 };
 
 export type Book = {
+  id: number;
   title: string;
   type: string;
   length: number;

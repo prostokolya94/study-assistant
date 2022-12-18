@@ -1,35 +1,24 @@
 import React from "react";
+import ThemesStore from "../../store/ThemesStore";
 import { BookStatus, Themes } from "../../types/types";
 import ThemeItem from "./ThemeItem";
 
 const style = {
   container: {
+    marginTop: "15px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "start",
     gap: "15px",
     width: "100%",
   } as React.CSSProperties,
 };
 
-const themes: Themes[] = [
-  {
-    title: "health",
-    content: [
-      {
-        title: "a book",
-        length: 300,
-        status: BookStatus.IN_PROGRESS,
-        type: "studybook",
-      },
-    ],
-  },
-];
 function ThemeList() {
   return (
     <div style={style.container}>
-      {themes.map((el) => (
+      {ThemesStore.themes.map((el) => (
         <ThemeItem theme={el} />
       ))}
     </div>
