@@ -8,6 +8,13 @@ interface IAddTheme {
   close: () => void;
 }
 
+const style = {
+  inputWrapper: {
+    display: "flex",
+    alignItems: "center",
+    gap: "15px",
+  } as React.CSSProperties,
+};
 const AddTheme: FC<IAddTheme> = ({ close }) => {
   const [currentTitle, setCurrentTitle] = useState<string>("");
 
@@ -23,7 +30,7 @@ const AddTheme: FC<IAddTheme> = ({ close }) => {
     close();
   }
   return (
-    <>
+    <div style={style.inputWrapper}>
       <TextField
         value={currentTitle}
         placeholder="please enter the title"
@@ -37,7 +44,7 @@ const AddTheme: FC<IAddTheme> = ({ close }) => {
       ) : (
         <BackspaceTwoToneIcon onClick={close} sx={{ cursor: "pointer" }} />
       )}
-    </>
+    </div>
   );
 };
 

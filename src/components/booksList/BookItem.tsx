@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { BookStatus } from "../../types/types";
-import getBooksStatus from "../../utils/utils";
+import { BookSheet } from "./BookSheet";
 
 interface IBookItem {
   title: string;
@@ -10,12 +10,26 @@ interface IBookItem {
 }
 
 const BookItem: FC<IBookItem> = (props) => {
+  const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
+
+  function handlerSheetShow() {
+    if (!isSheetOpen) {
+      setIsSheetOpen(true);
+    }
+  }
+
   return (
-    <div>
+    <div onClick={handlerSheetShow}>
       {props.title}
-      {props.type}
-      {props.length}
-      {getBooksStatus(props.status)}
+      {isSheetOpen && (
+        <BookSheet
+          close={setIsSheetOpen}
+          title={props.title}
+          length={props.length}
+          status={props.status}
+          type={props.type}
+        />
+      )}
     </div>
   );
 };

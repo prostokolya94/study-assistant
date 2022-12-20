@@ -11,7 +11,11 @@ const style = {
     alignItems: "center",
     justifyContent: "start",
     gap: "15px",
-    width: "100%",
+    width: "50%",
+    border: "1px solid black",
+    borderRadius: "5px",
+    padding: "15px",
+    boxShadow: "4px 4px 8px 0px rgba(198, 128, 238, 0.5)",
   } as React.CSSProperties,
 };
 

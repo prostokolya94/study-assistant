@@ -4,12 +4,11 @@ import BookItem from "../booksList/BookItem";
 
 const style = {
   item: {
-    width: "80%",
+    width: "30%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "start",
-    cursor: "pointer",
   } as React.CSSProperties,
 };
 
@@ -26,8 +25,10 @@ const ThemeItem: FC<IThemeItem> = ({ theme }) => {
 
   return (
     <>
-      <div style={style.item} onClick={handlerThemeOpen}>
-        {theme.title}
+      <div style={style.item}>
+        <h4 style={{ cursor: "pointer" }} onClick={handlerThemeOpen}>
+          {theme.title}
+        </h4>
       </div>
       {isBooksShow &&
         theme.content.map((el) => (

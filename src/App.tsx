@@ -12,6 +12,15 @@ const style = {
     flexDirection: "column",
     alignItems: "center",
     gap: "15px",
+    background: "rgba(198, 128, 238, 0.1)",
+  } as React.CSSProperties,
+  addButton: {
+    display: "flex",
+    gap: "15px",
+    background: "rgba(198, 128, 238, 0.29)",
+    padding: "10px",
+    borderRadius: "5px",
+    cursor: "pointer",
   } as React.CSSProperties,
 };
 
@@ -29,10 +38,10 @@ function App() {
       {isAddActive ? (
         <AddTheme close={handlerAddClicked} />
       ) : (
-        <BookmarkAddTwoToneIcon
-          onClick={handlerAddClicked}
-          sx={{ cursor: "pointer" }}
-        />
+        <div style={style.addButton} onClick={handlerAddClicked}>
+          <div>add new theme</div>
+          <BookmarkAddTwoToneIcon />
+        </div>
       )}
     </div>
   );
