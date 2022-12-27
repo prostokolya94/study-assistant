@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React, { FC, useState } from "react";
 import { BookStatus } from "../../types/types";
 import { BookSheet } from "./BookSheet";
@@ -9,6 +10,16 @@ interface IBookItem {
   status: BookStatus;
 }
 
+const style = {
+  item: {
+    cursor: "pointer",
+    borderRadius: "3px",
+    padding: "5px",
+    background: "rgba(198, 128, 238, 0.2)",
+    boxShadow: "4px 4px 8px 0px rgba(198, 128, 238, 0.3)",
+  } as React.CSSProperties,
+};
+
 const BookItem: FC<IBookItem> = (props) => {
   const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
 
@@ -19,8 +30,8 @@ const BookItem: FC<IBookItem> = (props) => {
   }
 
   return (
-    <div onClick={handlerSheetShow}>
-      {props.title}
+    <div onClick={handlerSheetShow} style={style.item}>
+      <Typography variant="h6">{props.title}</Typography>
       {isSheetOpen && (
         <BookSheet
           close={setIsSheetOpen}

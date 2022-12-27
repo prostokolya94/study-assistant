@@ -68,12 +68,11 @@ class ThemesStore {
     localItem = JSON.parse(localStorage.getItem("themes")!);
   }
 
-  //   removeTodo(id: number) {
-  //     this.filterAll();
-  //     this.themes = this.themes.filter((todo) => todo.id !== id);
-  //     localStorage.setItem("todos", JSON.stringify(this.themes));
-  //     localItem = JSON.parse(localStorage.getItem("todos")!);
-  //   }
+  removeTheme(id: number) {
+    this.themes = this.themes.filter((theme) => theme.id !== id);
+    localStorage.setItem("themes", JSON.stringify(this.themes));
+    localItem = JSON.parse(localStorage.getItem("themes")!);
+  }
 
   //   completeTodo(id: number) {
   //     this.themes = this.themes.map((todo) =>

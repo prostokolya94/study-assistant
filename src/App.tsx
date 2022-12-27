@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ThemeList from "./components/themesList/ThemesList";
 import BookmarkAddTwoToneIcon from "@mui/icons-material/BookmarkAddTwoTone";
 import { Typography } from "@mui/material";
 import AddTheme from "./components/addComponent/AddTheme";
+import { observer } from "mobx-react";
+import ThemesStore from "./store/ThemesStore";
 
 const style = {
   appWrapper: {
@@ -26,6 +28,11 @@ const style = {
 
 function App() {
   const [isAddActive, setIsAddActive] = useState<boolean>(false);
+  const [render, setRender] = useState<boolean>(false);
+
+  useEffect(() => {
+    setRender((p) => !p);
+  }, [ThemesStore.themes]);
 
   function handlerAddClicked() {
     setIsAddActive((prev) => !prev);
@@ -47,4 +54,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
