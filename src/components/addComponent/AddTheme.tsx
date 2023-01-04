@@ -3,6 +3,7 @@ import CheckTwoToneIcon from "@mui/icons-material/CheckTwoTone";
 import BackspaceTwoToneIcon from "@mui/icons-material/BackspaceTwoTone";
 import React, { FC, useState } from "react";
 import ThemesStore from "../../store/ThemesStore";
+import { Theme } from "../../types/types";
 
 interface IAddTheme {
   close: () => void;
@@ -24,8 +25,14 @@ const AddTheme: FC<IAddTheme> = ({ close }) => {
     setCurrentTitle(event.target.value);
   }
 
+  const createdTheme: Theme = {
+    id: -1,
+    title: currentTitle,
+    content: [],
+  };
+
   function handleSaveClick() {
-    ThemesStore.addTheme(currentTitle);
+    ThemesStore.addTheme(createdTheme);
     setCurrentTitle("");
     close();
   }

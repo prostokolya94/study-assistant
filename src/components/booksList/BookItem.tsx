@@ -8,6 +8,7 @@ interface IBookItem {
   type: string;
   length: number;
   status: BookStatus;
+  id: number;
 }
 
 const style = {
@@ -39,6 +40,7 @@ const BookItem: FC<IBookItem> = (props) => {
           length={props.length}
           status={props.status}
           type={props.type}
+          id={props.id}
         />
       )}
     </div>

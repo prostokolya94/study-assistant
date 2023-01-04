@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import React, { FC } from "react";
+import ThemesStore from "../../store/ThemesStore";
 import { BookStatus } from "../../types/types";
 
 interface IBookSheet {
@@ -8,6 +9,7 @@ interface IBookSheet {
   length: number;
   status: BookStatus;
   close: (any: boolean) => void;
+  id: number;
 }
 
 const style = {
@@ -42,6 +44,15 @@ export const BookSheet: FC<IBookSheet> = (props) => {
       <div style={style.modalContent}>
         {props.title}
         <Button onClick={(e) => props.close(false)}>Close this window</Button>
+        <Button
+          color="error"
+          onClick={(e) => {
+            ThemesStore.removeBook(props.id);
+            props.close(false);
+          }}
+        >
+          Delete this book
+        </Button>
       </div>
     </div>
   );

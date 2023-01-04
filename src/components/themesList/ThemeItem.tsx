@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import { observer } from "mobx-react-lite";
 import React, { FC, useState } from "react";
 import ThemesStore from "../../store/ThemesStore";
-import { Themes } from "../../types/types";
+import { Theme } from "../../types/types";
 import BookItem from "../booksList/BookItem";
 
 const style = {
@@ -17,7 +17,7 @@ const style = {
 };
 
 interface IThemeItem {
-  theme: Themes;
+  theme: Theme;
 }
 
 const ThemeItem: FC<IThemeItem> = ({ theme }) => {
@@ -42,6 +42,7 @@ const ThemeItem: FC<IThemeItem> = ({ theme }) => {
               status={el.status}
               title={el.title}
               type={el.type}
+              id={el.id}
             />
           ))
         ) : (

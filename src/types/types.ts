@@ -1,4 +1,4 @@
-export type Themes = {
+export type Theme = {
   id: number;
   title: string;
   content: Book[];

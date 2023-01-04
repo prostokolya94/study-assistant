@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { BookStatus, Themes } from "../types/types";
+import { BookStatus, Theme } from "../types/types";
 
 const item = localStorage.getItem("themes")!;
 let localItem: any;
@@ -10,7 +10,7 @@ if (item !== undefined) {
 }
 
 class ThemesStore {
-  themes: Themes[] = [
+  themes: Theme[] = [
     {
       id: 0,
       title: "health",
@@ -54,22 +54,38 @@ class ThemesStore {
     localStorage.setItem("themes", JSON.stringify(this.themes));
   }
 
-  addTheme(title: string) {
+  addTheme(createdTheme: Theme) {
     // this.filterAll();
-    let newTheme: Themes = {
-      id: Date.now(),
-      content: [],
-      title: title,
+    let newTheme: Theme = {
+      id: createdTheme.id === -1 ? Date.now() : createdTheme.id,
+      content: createdTheme.content,
+      title: createdTheme.title,
     };
     if (newTheme.title.length > 0) {
       this.themes = this.themes.concat(newTheme);
     }
-    localStorage.setItem("themes", JSON.stringify(this.themes));
-    localItem = JSON.parse(localStorage.getItem("themes")!);
+    this.setInLocalStorage();
   }
 
   removeTheme(id: number) {
     this.themes = this.themes.filter((theme) => theme.id !== id);
+    this.setInLocalStorage();
+  }
+
+  removeBook(id: number) {
+    let themeToUpdate: Theme | undefined = this.themes.find((el) =>
+      el.content.map((book) => book.id !== id)
+    );
+    if (themeToUpdate) {
+      themeToUpdate.content = themeToUpdate.content.filter(
+        (el) => el.id !== id
+      );
+      this.removeTheme(themeToUpdate.id);
+      this.addTheme(themeToUpdate);
+    }
+  }
+
+  setInLocalStorage() {
     localStorage.setItem("themes", JSON.stringify(this.themes));
     localItem = JSON.parse(localStorage.getItem("themes")!);
   }
