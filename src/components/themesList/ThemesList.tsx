@@ -26,7 +26,7 @@ function ThemeList() {
       {ThemesStore.themes.length > 0 ? (
         ThemesStore.themes
           .sort((a, b) => a.id - b.id)
-          .map((el) => <ThemeItem theme={el} />)
+          .map((el, idx) => <ThemeItem theme={el} key={idx} />)
       ) : (
         <Typography>Lets create your first theme!</Typography>
       )}

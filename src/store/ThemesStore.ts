@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { BookStatus, Theme } from "../types/types";
+import { Book, BookStatus, Theme } from "../types/types";
 
 const item = localStorage.getItem("themes")!;
 let localItem: any;
@@ -85,6 +85,16 @@ class ThemesStore {
     }
   }
 
+  addBook(book: Book, themeId: number) {
+    let themeToUpdate: Theme | undefined = this.themes.find(
+      (el) => el.id === themeId
+    );
+    if (themeToUpdate) {
+      themeToUpdate.content = themeToUpdate.content.concat(book);
+      this.removeTheme(themeId);
+      this.addTheme(themeToUpdate);
+    }
+  }
   setInLocalStorage() {
     localStorage.setItem("themes", JSON.stringify(this.themes));
     localItem = JSON.parse(localStorage.getItem("themes")!);

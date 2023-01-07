@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite";
 import React, { FC, useState } from "react";
 import ThemesStore from "../../store/ThemesStore";
 import { Theme } from "../../types/types";
+import AddBook from "../addComponent/AddBook";
 import BookItem from "../booksList/BookItem";
 
 const style = {
@@ -22,9 +23,14 @@ interface IThemeItem {
 
 const ThemeItem: FC<IThemeItem> = ({ theme }) => {
   const [isBooksShow, setIsBooksShow] = useState<boolean>(false);
+  const [isBooksCreating, setIsBooksCreating] = useState<boolean>(false);
 
   function handlerThemeOpen() {
     setIsBooksShow((prev) => !prev);
+  }
+
+  function handlerBookCreating() {
+    setIsBooksCreating((prev) => !prev);
   }
 
   return (
@@ -36,8 +42,9 @@ const ThemeItem: FC<IThemeItem> = ({ theme }) => {
       </div>
       {isBooksShow &&
         (theme.content.length > 0 ? (
-          theme.content.map((el) => (
+          theme.content.map((el, idx) => (
             <BookItem
+              key={idx}
               length={el.length}
               status={el.status}
               title={el.title}
@@ -48,19 +55,32 @@ const ThemeItem: FC<IThemeItem> = ({ theme }) => {
         ) : (
           <>
             <Typography>There are no books...yet</Typography>
-            <Button size="small" sx={{ color: "rgba(198, 128, 238, 1)" }}>
-              Let's fix this!
+            <Button
+              size="small"
+              sx={{ color: "rgba(198, 128, 238, 1)" }}
+              onClick={handlerBookCreating}
+            >
+              {isBooksCreating ? "Cancel" : "Let's fix this!"}
             </Button>
           </>
         ))}
+      {isBooksCreating && <AddBook themeId={theme.id} />}
       {isBooksShow && (
-        <Button
-          size="small"
-          color="error"
-          onClick={(e) => ThemesStore.removeTheme(theme.id)}
-        >
-          Remove this theme
-        </Button>
+        <>
+          {theme.content.length > 0 && (
+            <Button size="small" color="info" onClick={handlerBookCreating}>
+              {isBooksCreating ? "Cancel" : "Add new book"}
+            </Button>
+          )}
+
+          <Button
+            size="small"
+            color="error"
+            onClick={(e) => ThemesStore.removeTheme(theme.id)}
+          >
+            Remove this theme
+          </Button>
+        </>
       )}
     </>
   );
