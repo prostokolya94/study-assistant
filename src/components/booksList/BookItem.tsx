@@ -9,6 +9,7 @@ interface IBookItem {
   length: number;
   status: BookStatus;
   id: number;
+  themeId: number;
 }
 
 const style = {
@@ -18,6 +19,10 @@ const style = {
     padding: "5px",
     background: "rgba(198, 128, 238, 0.2)",
     boxShadow: "4px 4px 8px 0px rgba(198, 128, 238, 0.3)",
+  } as React.CSSProperties,
+  header: {
+    display: "flex",
+    justifyContent: "center",
   } as React.CSSProperties,
 };
 
@@ -32,7 +37,10 @@ const BookItem: FC<IBookItem> = (props) => {
 
   return (
     <div onClick={handlerSheetShow} style={style.item}>
-      <Typography variant="h6">{props.title}</Typography>
+      <div>
+        <Typography variant="h6">{props.title}</Typography>
+        <Typography variant="caption">{BookStatus[props.status]}</Typography>
+      </div>
       {isSheetOpen && (
         <BookSheet
           close={setIsSheetOpen}
@@ -41,6 +49,7 @@ const BookItem: FC<IBookItem> = (props) => {
           status={props.status}
           type={props.type}
           id={props.id}
+          themeId={props.themeId}
         />
       )}
     </div>

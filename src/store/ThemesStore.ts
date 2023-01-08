@@ -10,41 +10,7 @@ if (item !== undefined) {
 }
 
 class ThemesStore {
-  themes: Theme[] = [
-    {
-      id: 0,
-      title: "health",
-      content: [
-        {
-          id: 1,
-          title: "a book",
-          length: 300,
-          status: BookStatus.IN_PROGRESS,
-          type: "studybook",
-        },
-      ],
-    },
-    {
-      title: "history",
-      id: 2,
-      content: [
-        {
-          id: 3,
-          title: "a history book",
-          length: 410,
-          status: BookStatus.IN_PROGRESS,
-          type: "nonfiction",
-        },
-        {
-          id: 4,
-          title: "same history book",
-          length: 250,
-          status: BookStatus.BOUGHT,
-          type: "nonfiction",
-        },
-      ],
-    },
-  ];
+  themes: Theme[] = [];
 
   constructor() {
     makeAutoObservable(this);

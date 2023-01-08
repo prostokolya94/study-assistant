@@ -61,11 +61,13 @@ const AddBook: FC<IAddBook> = ({ themeId }) => {
         <TextField
           size="small"
           sx={{ width: "20%" }}
+          value={currnetTitle}
           onChange={(e) => setCurrentTitle(e.target.value)}
         />
         <TextField
           size="small"
           sx={{ width: "20%" }}
+          value={currentType}
           onChange={(e) => setCurrentType(e.target.value)}
         />
         <TextField

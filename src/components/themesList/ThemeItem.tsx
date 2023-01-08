@@ -50,6 +50,7 @@ const ThemeItem: FC<IThemeItem> = ({ theme }) => {
               title={el.title}
               type={el.type}
               id={el.id}
+              themeId={theme.id}
             />
           ))
         ) : (
