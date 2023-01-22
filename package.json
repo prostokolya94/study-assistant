@@ -2,7 +2,7 @@
   "name": "study-assistant",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/prostokolya94/study-assistant",
+  "homepage": "https://github.com/prostokolya94",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
