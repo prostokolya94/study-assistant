@@ -22,7 +22,9 @@ const style = {
   } as React.CSSProperties,
   header: {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
+    textAlign: "center",
   } as React.CSSProperties,
 };
 
@@ -34,12 +36,27 @@ const BookItem: FC<IBookItem> = (props) => {
       setIsSheetOpen(true);
     }
   }
+  const getHeaderByStatus = (status: BookStatus) => {
+    if (status === 0) {
+      return "Need to buy";
+    } else if (status === 1) {
+      return "Bought";
+    } else if (status === 2) {
+      return "In progress";
+    } else if (status === 3) {
+      return "Finished";
+    } else if (status === 4) {
+      return "Notes";
+    }
+  };
 
   return (
     <div onClick={handlerSheetShow} style={style.item}>
-      <div>
+      <div style={style.header}>
         <Typography variant="h6">{props.title}</Typography>
-        <Typography variant="caption">{BookStatus[props.status]}</Typography>
+        <Typography variant="body2">
+          {getHeaderByStatus(props.status)}
+        </Typography>
       </div>
       {isSheetOpen && (
         <BookSheet

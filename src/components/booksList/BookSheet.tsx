@@ -29,13 +29,12 @@ const style = {
   modalContent: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "start",
+    justifyContent: "space-between",
     flexDirection: "column",
     background: "white",
-    height: "50%",
+    height: "38%",
     width: "50%",
     padding: "30px",
-    gap: "15px",
   } as React.CSSProperties,
 };
 
@@ -61,7 +60,7 @@ export const BookSheet: FC<IBookSheet> = ({
   return (
     <div style={style.modalWrapper}>
       <div style={style.modalContent}>
-        <Typography>Book title: {title}</Typography>
+        <Typography variant="h4">{title.toUpperCase()}</Typography>
         <Typography>Type: {type}</Typography>
         <Typography>Pages: {length}</Typography>
         <Select
@@ -76,13 +75,16 @@ export const BookSheet: FC<IBookSheet> = ({
           <MenuItem value={BookStatus.NOTES}>Notes</MenuItem>
           <MenuItem value={BookStatus.FINISHED}>Finished</MenuItem>
         </Select>
-        <div>
+        <div style={{ display: "flex", gap: "10px" }}>
           {" "}
           <Button
             onClick={(e) => {
               ThemesStore.removeBook(id);
               ThemesStore.addBook(updatedBook, themeId);
               close(false);
+            }}
+            sx={{
+              background: "rgba(198, 128, 238, 0.29)",
             }}
           >
             Close this window
@@ -92,6 +94,9 @@ export const BookSheet: FC<IBookSheet> = ({
             onClick={(e) => {
               ThemesStore.removeBook(id);
               close(false);
+            }}
+            sx={{
+              background: "rgba(198, 128, 238, 0.29)",
             }}
           >
             Delete this book

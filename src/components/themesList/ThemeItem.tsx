@@ -32,17 +32,21 @@ const ThemeItem: FC<IThemeItem> = ({ theme }) => {
   function handlerBookCreating() {
     setIsBooksCreating((prev) => !prev);
   }
-
+  const sortedArr = theme.content.slice().sort((a, b) => a.status - b.status);
   return (
     <>
       <div style={style.item}>
-        <h4 style={{ cursor: "pointer" }} onClick={handlerThemeOpen}>
-          {theme.title}
-        </h4>
+        <Typography
+          variant="h4"
+          style={{ cursor: "pointer" }}
+          onClick={handlerThemeOpen}
+        >
+          {theme.title.toUpperCase()}
+        </Typography>
       </div>
       {isBooksShow &&
         (theme.content.length > 0 ? (
-          theme.content.map((el, idx) => (
+          sortedArr.map((el, idx) => (
             <BookItem
               key={idx}
               length={el.length}
